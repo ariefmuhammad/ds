@@ -1,0 +1,2 @@
+<td><button href="{{ $url_edit }}" title="{{ $mahasiswa->nama }}" data-toggle="modal" data-target='#exampleModal-{{ $mahasiswa->id }}' class='btn modal-trigger edit-modal' data-nama_makul='{{ $mahasiswa->nama }}' data-id='{{ $mahasiswa->id }}'>Edit</button> ||
+        <a href="{{ $url_destroy }}" title="{{ $mahasiswa->nama }}" data-toggle="modal" data-target='#exampleModalHapus-{{ $mahasiswa->id }}' class='delete-makul' data-id='{{ $mahasiswa->id }}'> Hapus</a></td> 
