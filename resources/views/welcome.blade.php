@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>Data Mahasiswa</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -24,7 +24,7 @@
 
         
         <small id="emailHelp" class="form-text text-muted">Tambah Mahasiswa</small>    
-        <form method="post" action="tambahdata">
+        <form method="post" action="{{ route('dataMahasiswa.store')}}">
         {{csrf_field()}}
   <div class="form-group">
     <label for="exampleInputEmail1">Nama</label>
@@ -61,10 +61,41 @@
         </div>
 
 
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button> -->
+
+@foreach($mahasiswa as $mahasiswas)
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLihat-{{ $mahasiswas->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Data Mahasiswa : {{ $mahasiswas->nama }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+    
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Nama: {{$mahasiswas->nama}}</label>
+        
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Fakultas: {{$mahasiswas->fakultas}}</label>
+         
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Prodi: {{$mahasiswas->prodi}}</label>
+         
+          </div>
+     
+      </div>
+
+    </div>
+  </div>
+</div>
+@endforeach
 
 @foreach($mahasiswa as $mahasiswas)
 <!-- Modal -->
@@ -78,12 +109,11 @@
         </button>
       </div>
       <div class="modal-body">
-      <form action="{{ route('editdata', $mahasiswas->id) }}"  method="post">
+      <form action="{{ route('dataMahasiswa.update', $mahasiswas->id)}}" method="post">
+      @method('PATCH')
       {{csrf_field()}}
-          <!-- <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div> -->
+
+  
           <div class="form-group">
             <label for="message-text" class="col-form-label">Nama:</label>
             <input class="form-control" id="message-text" name="nama" value="{{$mahasiswas->nama}}"></input>
@@ -116,32 +146,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Hapus Data Mahasiswa {{ $mahasiswas->nama }}</h5>
-
-        <h3>Apakah anda yakin menghapus data ini ?</h3>
+        <h5 class="modal-title" id="exampleModalLabel"> Hapus Data Mahasiswa : {{ $mahasiswas->nama }} ?</h5>
+       
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      <form action="{{ route('hapusdata', $mahasiswas->id) }}"  method="post">
+      <form action="{{ route('dataMahasiswa.destroy', $mahasiswas->id)}}" method="post">
+      @method('DELETE')
       {{csrf_field()}}
-          <!-- <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div> -->
-          <!-- <div class="form-group">
-            <label for="message-text" class="col-form-label">Nama:</label>
-            <input class="form-control" id="message-text" name="nama" value="{{$mahasiswas->nama}}"></input>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Fakultas:</label>
-            <input class="form-control" id="message-text" name="fakultas" value="{{$mahasiswas->fakultas}}"></input>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Prodi:</label>
-            <input class="form-control" id="message-text" name="prodi" value="{{$mahasiswas->prodi}}"></input>
-          </div> -->
+
      
       </div>
       <div class="modal-footer">
@@ -171,7 +186,7 @@ $(document).ready(function() {
         "responsive": true,
         "processing": true,
         "serverSide": true,
-        "ajax": "{{ route('manggildata') }}",
+        "ajax": "{{ route('manggilData') }}",
         "columns": [
             { "data": "DT_RowIndex", "name": 'id' },
             { "data": "nama", "name": 'nama' },

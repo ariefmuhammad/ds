@@ -21,8 +21,8 @@ class DataController extends Controller
             ->addColumn('option', function ($mahasiswa) {
                 return view('button', [
                     'mahasiswa'=> $mahasiswa,
-                    'url_edit' => route('editdata', $mahasiswa->id),
-                    'url_destroy' => route('hapusdata', $mahasiswa->id)
+                    'url_edit' => route(' editData ', $mahasiswa->id), 
+                    'url_destroy' => route(' hapusData ', $mahasiswa->id) 
                 ]);
             })
          ->addIndexColumn()
@@ -31,7 +31,7 @@ class DataController extends Controller
     }
 
 
-    public function tambahdata(request $request) {
+    public function tambahData(request $request) {
         $mahasiswa = new Mahasiswa;
 
         $mahasiswa->nama = $request->nama;
@@ -42,7 +42,7 @@ class DataController extends Controller
         return back();
     }
 
-    public function editdata(request $request, $id) {
+    public function editData(request $request, $id) {
         $mahasiswa = Mahasiswa::find($id);
 
         $mahasiswa->nama = $request->nama;
@@ -54,7 +54,7 @@ class DataController extends Controller
         
     }
 
-    public function hapusdata($id) {
+    public function hapusData($id) {
         $mahasiswa = Mahasiswa::find($id);
         $mahasiswa->delete();
 

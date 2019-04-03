@@ -11,15 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('buttton');
-});
+// Route::get('/', function () {
+//     return view('button');
+// });
+Route::get('/', 'MahasiswaController@index')->name('tampilData');
+// Route::get('/', 'DataController@index')->name('tampilData');
+Route::get('manggilData', 'MahasiswaController@get')->name('manggilData');
+// Route::get('manggilData', 'DataController@get')->name('manggildata');
 
-Route::get('tampildata', 'DataController@index')->name('tampildata');
-Route::get('manggildata', 'DataController@get')->name('manggildata');
+// Route::post('tambahData', 'DataController@tambahData')->name('tambahData');
+// Route::post('editData/{data}/edit', 'DataController@editData')->name('editData');
+// Route::post('hapusData/{data}', 'DataController@hapusData')->name('hapusData');
 
-Route::post('tambahdata', 'DataController@tambahdata')->name('tambahdata');
-Route::post('editdata/{data}/edit', 'DataController@editdata')->name('editdata');
-Route::post('hapusdata/{data}', 'DataController@hapusdata')->name('hapusdata');
+Route::resource('dataMahasiswa', 'MahasiswaController');
 
 

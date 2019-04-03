@@ -9,7 +9,7 @@ class Mahasiswa extends Model
     protected $table = 'mahasiswa';
 
     protected $fillable = [
-        'id', 'nama','fakultas', 'prodi'
+        'id', 'nama', 'fakultas', 'prodi'
         ];
 
     public $timestamps = false;    
