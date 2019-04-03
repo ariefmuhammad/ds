@@ -16,7 +16,6 @@ class MahasiswaController extends Controller
     public function index()
     {
         $mahasiswa = Mahasiswa::all();
-        // return Datatables::of($mahasiswa)->make(true);
 
         return view('welcome', compact('mahasiswa'));
     }
@@ -58,13 +57,6 @@ class MahasiswaController extends Controller
     {
 
 
-        // $mahasiswa = new Mahasiswa;
-
-        // $mahasiswa->nama = $request->nama;
-        // $mahasiswa->fakultas = $request->fakultas;
-        // $mahasiswa->prodi = $request->prodi;
-        // $mahasiswa->save();
-
         $mahasiswa = new Mahasiswa;
         $mahasiswa->create($request->all());
 
@@ -102,15 +94,7 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $mahasiswa = Mahasiswa::find($id);
-
-        // $mahasiswa->nama = $request->nama;
-        // $mahasiswa->fakultas = $request->fakultas;
-        // $mahasiswa->prodi = $request->prodi;
-        // $mahasiswa->save();
-
-        // return back();
-
+    
 
         $mahasiswa = Mahasiswa::find($id);
         $mahasiswa->update($request->all());
